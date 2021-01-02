@@ -30,9 +30,11 @@ class Paddle:
             self.posY = HEIGHT - self.height
 
     def restart_pos(self):
-        self.posY = HEIGHT//2 - self.height//2
+        self.posY = HEIGHT // 2 - self.height // 2
         self.state = 'stopped'
         self.show()
+
+
 class Ball:
     def __init__(self, screen, color, posX, posY, radius):
         self.screen = screen
@@ -62,11 +64,12 @@ class Ball:
         self.dy = -self.dy
 
     def restart_pos(self):
-        self.posX = WIDTH//2
-        self.posY = HEIGHT//2
+        self.posX = WIDTH // 2
+        self.posY = HEIGHT // 2
         self.dx = 0
         self.dy = 0
         self.show()
+
 
 class Score:
     def __init__(self, screen, points, posX, posY):
@@ -89,6 +92,7 @@ class Score:
     def restart(self):
         self.points = "0"
         self.label = self.font.render(self.points, 0, WHITE)
+
 
 class CollisionManager:
     def ball_and_paddle1(self, ball, paddle1):
@@ -140,6 +144,7 @@ def paint_back():
     screen.fill(BLACK)
     pygame.draw.line(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT), 5)
 
+
 def restart():
     paint_back()
     score1.restart()
@@ -148,10 +153,11 @@ def restart():
     paddle1.restart_pos()
     paddle2.restart_pos()
 
+
 paint_back()
 
 # OBJECT
-ball = Ball(screen, WHITE, WIDTH // 2, HEIGHT //2, 12)
+ball = Ball(screen, WHITE, WIDTH // 2, HEIGHT // 2, 12)
 paddle1 = Paddle(screen, WHITE, 15, HEIGHT // 2 - 60, 20, 120)
 paddle2 = Paddle(screen, WHITE, WIDTH - 20 - 15, HEIGHT // 2 - 60, 20, 120)
 collision = CollisionManager()
