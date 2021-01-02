@@ -4,12 +4,29 @@ from random import randint
 with open("hangman.txt", "r") as word_list:
     wordlist = list(word_list)
 
-#wordlist = ['taz', 'abraham', 'bennie', 'cameron']
+# wordlist = ['taz', 'abraham', 'bennie', 'cameron']
 
 
 def hangman():
-    attempts = 0
+    print("Welcome to a game of hangman. You will see spaces from a random word. Choose a letter to try in the word "
+          "and see if you can figure it out! You will have 6 attempts before the game is over")
+    play = input("Would you like to play? (Yes/No) \n").lower()
+
+    difficulty = input("What difficulty would you like to play? Easy = 1-5 letters, Medium = 6-10 letters, Hard = 11+ letter \n").lower()
+
     word = wordlist[random.randint(0, len(wordlist) - 1)]
+
+    if difficulty == "easy":
+        while len(word) > 5:
+            word = wordlist[random.randint(0, len(wordlist) - 1)]
+    elif difficulty == "medium":
+        while len(word) < 5 or len(word) > 10:
+            word = wordlist[random.randint(0, len(wordlist) - 1)]
+    else:
+        while len(word) < 11:
+            word = wordlist[random.randint(0, len(wordlist) - 1)]
+
+    attempts = 0
     space_num = len(word)
     word_list = []
     game_over = False
@@ -17,11 +34,7 @@ def hangman():
     # fills a list with underscores
     for i in range(space_num):
         word_list.append("-")
-    print(word)
-
-    print("Welcome to a game of hangman. You will see spaces from a random word. Choose a letter to try in the word "
-          "and see if you can figure it out! You will have 6 attempts before the game is over")
-    play = input("Would you like to play? (Yes/No) \n").lower()
+    print("Word length: {}".format(len(word)))
 
     if play == "yes":
         while not game_over:
@@ -36,7 +49,8 @@ def hangman():
             if user_letter.lower() in word.lower():
                 char_index = []
 
-                # loops through the Word and adds the indexes that the user inputted letter is present at. It then appends these indexes into the char_index list
+                # loops through the Word and adds the indexes that the user inputted letter is present at. It then
+                # appends these indexes into the char_index list
                 for i in range(len(word)):
                     if user_letter == word[i]:
                         char_index.append(i)
@@ -47,15 +61,15 @@ def hangman():
             else:
                 print("'{}' is not in this word".format(user_letter))
                 attempts += 1
-                print("{} attempts left\n".format(6-attempts))
+                print("{} attempts left\n".format(6 - attempts))
             if attempts == 6:
                 game_over = True
-                print("Game over, you lost. The word was '{}''".format(word))
+                print("Game over, you lost. The word was {}".format(word))
             elif "-" not in word_list:
                 print("You win! It only took you {} tries".format(attempts))
                 game_over = True
     else:
-        print("\nWell fuck you too then bitch")
+        print("\nWe'll see you next time then!")
 
 
 # prints the underscore spaces
