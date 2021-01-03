@@ -1,0 +1,8 @@
+CPU: AMD Ryzen 9 3900X 12-Core Processor
+RAM: 31.91GB
+HD Total Size: 930.88GB
+OS: Windows 10 2009
+Dell Service Tag: Default string
+Windows Key: KKKM9-R892F-XHRBK-29DCJ-BWRC2
+GPU: GeForce RTX 3080
+Motherboard Serial: SerialNumberSystemSerialNumber
